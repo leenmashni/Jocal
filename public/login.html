@@ -112,12 +112,12 @@
     }
   });
 </script>
-
+<!--******************-->
 <script>
   document.querySelector('.sign-up-container form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    const name = document.querySelector('.sign-up-container input[placeholder="Name"]').value;
+    const username = document.querySelector('.sign-up-container input[placeholder="Name"]').value;
     const email = document.querySelector('.sign-up-container input[placeholder="Email"]').value;
     const password = document.querySelector('.sign-up-container input[placeholder="Password"]').value;
 
@@ -127,7 +127,7 @@
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, email, password })
+        body: JSON.stringify({ username, email, password })  // هنا غيرنا name إلى username
       });
 
       const data = await response.json();
@@ -146,6 +146,7 @@
     }
   });
 </script>
+<!--******************-->
 
 </body>
 </html>
