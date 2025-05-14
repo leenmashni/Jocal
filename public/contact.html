@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jocal - Local Shopping Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+
+  <div class="container">
+    <header class="main-header">
+      <div class="logo-search">
+        <h1 class="logo">Jocal</h1>
+        <form class="search" role="search">
+          <input type="text" class="search__input" placeholder="Search shops, deals..." />
+          <button class="search__button">
+            <svg class="search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M505 442.7L405.3 343a208.1 208.1 0 0044.4-129C449.7 95.7 353.9 0 234.9 0S20.1 95.7 20.1 214.7s95.8 214.7 214.8 214.7c48.6 0 93.2-15.8 129-44.4l99.7 99.7c4.5 4.5 10.4 6.7 16.3 6.7s11.8-2.2 16.3-6.7c9-9 9-23.6 0-32.6zM234.9 378.3c-90.1 0-163.6-73.5-163.6-163.6S144.8 51.1 234.9 51.1s163.6 73.5 163.6 163.6-73.5 163.6-163.6 163.6z"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+      <nav class="main-nav">
+        <a href="#" class="nav-link">Home</a>
+        <a href="#" class="nav-link">Our Story</a>
+        <a href="#" class="nav-link">Deals</a>
+      </nav>
+      <div class="header-actions">
+        <button class="button">Login</button>
+        <button class="button">Register</button>
+        <a href="#" class="icon-button" title="Profile">
+          <img src="" alt="Profile" class="profile-icon" />
+        </a>
+        <a href="#" class="icon-button" title="Wishlist">
+          <svg class="icon" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+              2 5.42 4.42 3 7.5 3c1.74 0 3.41 1.01 4.5 2.09
+              C13.09 4.01 14.76 3 16.5 3 19.58 3 22 5.42
+              22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </a>
+      </div>
+    </header>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="contact-container">
+    <div class="contact-card">
+      <div class="contact-form">
+        <form id="contactForm">
+          <h2>Contact Us</h2>
+          <input type="text" id="name" name="name" placeholder="Your Name" required />
+          <input type="email" id="email" name="email" placeholder="Your Email" required />
+          <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+      <div class="side-panel">
+        <div class="panel-overlay"></div>
+        <div class="panel-content">
+          <h2>Let’s Talk</h2>
+          <p>Whether you’re looking to collaborate, grow your reach, or just have a question<br />Feel free to reach out anytime.</p>
+          <div class="contact-phone">
+            +962 7 9999 1234
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script to handle form submission -->
+  <script>
+    const form = document.getElementById('contactForm');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      try {//const res = await fetch('/api/contact'
+        const res = await fetch('http://localhost:5000/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, message })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          alert('Message sent successfully!');
+          form.reset();
+        } else {
+          alert(data.error || 'Something went wrong.');
+        }
+      } catch (err) {
+        alert('Error sending message.');
+        console.error(err);
+      }
+    });
+  </script>
+
+</body>
+</html>
