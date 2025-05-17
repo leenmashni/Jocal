@@ -18,53 +18,56 @@ const Search = () => {
     useEffect(() => {
         const normalizeCategory = (value) => {
             if (!value) return null;
-    
+
             const val = value.trim().toLowerCase();
-    
+
             if (["jewellery", "jewelry"].includes(val)) return "Jewelry";
             if (["accessories", "accessory"].includes(val)) return "Accessories";
             if (["homeware", "other"].includes(val)) return null;
             if (["clothing", "clothes"].includes(val)) return "Clothing";
-    
+
             return val.charAt(0).toUpperCase() + val.slice(1); // Capitalize
         };
-    
+
         const fetchProducts = async () => {
             try {
                 const res = await axios.get("http://localhost:5000/api/products");
                 setProducts(res.data);
-    
+
                 const catMap = {};
-    
+
                 res.data.forEach(product => {
                     const rawCategory = normalizeCategory(product.category);
                     const rawSubcategory = normalizeCategory(product.subcategory);
-    
+
                     if (!rawCategory) return;
-    
+
                     if (!catMap[rawCategory]) catMap[rawCategory] = new Set();
-    
+
+                    // Skip "Bags" if it's a subcategory of "Clothing"
+                    if (rawCategory === "Clothing" && rawSubcategory === "Bags") return;
+
                     // Skip adding subcategory if it's same as category
                     if (rawSubcategory && rawSubcategory !== rawCategory) {
                         catMap[rawCategory].add(rawSubcategory);
                     }
                 });
-    
+
                 const categoriesObj = {};
                 Object.entries(catMap).forEach(([cat, subSet]) => {
                     categoriesObj[cat] = Array.from(subSet);
                 });
-    
+
                 setCategoriesWithSubs(categoriesObj);
             } catch (error) {
                 console.error("Failed to fetch products", error);
             }
         };
-    
+
         fetchProducts();
     }, []);
-    
-    
+
+
 
     const allBrands = [...new Set(products.map(p => p.brand).filter(Boolean))];
 
@@ -74,27 +77,25 @@ const Search = () => {
         const query = (searchQuery || '').toLowerCase();
 
         const matchesSearch = title.includes(query) || brand.includes(query);
-        const matchesCategory =
-            selectedCategories.length === 0 ||
-            selectedCategories.some(
-                cat => cat.toLowerCase().trim() === (product.category || '').toLowerCase().trim()
-            );
-
-        const matchesSubCategory =
-            (selectedSubCategories.length === 0 && selectedSubSubCategories.length === 0) ||
-            selectedSubCategories.some(sub => {
-                const subLower = sub.toLowerCase().trim();
-                return product.subcategory?.toLowerCase().trim() === subLower;
-            })
-
-        const matchesBrand =
-            selectedBrands.length === 0 ||
-            selectedBrands.some(b => b.toLowerCase() === product.brand?.toLowerCase());
+        const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(brand);
         const matchesPrice = Number(product.price) <= Number(price);
         const matchesRating = Number(product.rating || 0) >= Number(selectedRating);
 
-        return matchesSearch && (matchesSubCategory ? matchesSubCategory : matchesCategory) && matchesBrand && matchesPrice && matchesRating;
+        const productCategory = (product.category || '').toLowerCase().trim();
+        const productSubCategory = (product.subcategory || '').toLowerCase().trim();
+
+        const matchesCategory = selectedCategories.length === 0 || selectedCategories.map(c => c.toLowerCase().trim()).includes(productCategory);
+        const matchesSubCategory = selectedSubCategories.length === 0 || selectedSubCategories.map(s => s.toLowerCase().trim()).includes(productSubCategory);
+
+        // Apply subcategory filter if it exists on product and user selected subcategories
+        const categoryMatch =
+            productSubCategory && selectedSubCategories.length > 0
+                ? matchesSubCategory
+                : matchesCategory;
+
+        return matchesSearch && categoryMatch && matchesBrand && matchesPrice && matchesRating;
     });
+
 
     const toggleSelection = (value, setter, current) => {
         setter(current.includes(value)
