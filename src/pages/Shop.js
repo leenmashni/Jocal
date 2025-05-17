@@ -77,7 +77,9 @@ const Search = () => {
         const query = (searchQuery || '').toLowerCase();
 
         const matchesSearch = title.includes(query) || brand.includes(query);
-        const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(brand);
+        const matchesBrand =
+            selectedBrands.length === 0 ||
+            selectedBrands.map(b => b.toLowerCase()).includes(brand);
         const matchesPrice = Number(product.price) <= Number(price);
         const matchesRating = Number(product.rating || 0) >= Number(selectedRating);
 
@@ -95,6 +97,9 @@ const Search = () => {
 
         return matchesSearch && categoryMatch && matchesBrand && matchesPrice && matchesRating;
     });
+
+    filteredProducts.sort((a, b) => Number(a.price) - Number(b.price));
+
 
 
     const toggleSelection = (value, setter, current) => {
@@ -216,7 +221,7 @@ const Search = () => {
                             <input
                                 type="range"
                                 min="0"
-                                max="500"
+                                max="3000"
                                 step="10"
                                 value={price}
                                 onChange={(e) => setPrice(Number(e.target.value))}
