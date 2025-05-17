@@ -333,3 +333,8 @@ input[type="range"] {
   color: #88b03b;
   transition: 0.2s ease;
 }
+
+.subcategory-list {
+    margin-left: 1rem;
+    font-size: 0.95rem;
+}
