@@ -1,0 +1,206 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jocal - Search Page</title>
+  <link rel="stylesheet" href="search.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  integrity="sha512-TUqy+uDq3HV/jMiFaJG4u+tAm+ZYoMtXs4yLDZg3kWWeEPkWy8HlJPuMhn7ZBqBj4V14EeVGz0u+I6V6P+gHng=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+  />
+
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+
+
+</head>
+
+<!-- NAVBAR -->
+<header class="main-navbar">
+  <div class="nav-container">
+    <div class="logo">JOCAL</div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">Deals</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="nav-icons">
+      <i class="fa-regular fa-user"></i>
+      <i class="fa-regular fa-heart"></i>
+      <i class="fa-solid fa-cart-shopping"></i>
+    </div>
+  </div>
+</header>
+
+<body>
+
+  <!-- HERO SECTION -->
+  <section class="search-hero">
+    <div class="search-hero-content">
+      <h1>Give All You Need</h1>
+      <div class="search-box">
+        <input type="text" placeholder="Search on Jocal..." />
+        <button>Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT WRAPPER that pops out -->
+  <div class="product-wrapper">
+    <section class="search-results">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <h3>Filter</h3>
+      
+        <!-- Category -->
+        <div class="filter-group">
+          <h4>Category</h4>
+          <ul>
+            <li><input type="checkbox" /> All Products</li>
+            <li><input type="checkbox" /> For Home</li>
+            <li><input type="checkbox" /> For Music</li>
+            <li><input type="checkbox" /> For Storage</li>
+          </ul>
+        </div>
+      
+        <!-- Price Range -->
+        <div class="filter-group">
+          <h4>Price</h4>
+          <input type="range" min="0" max="500" step="10" value="250" id="priceRange" />
+          <p>Up to: <span id="priceValue">$250</span></p>
+        </div>
+      
+        <!-- Rating -->
+        <div class="filter-group">
+            <h4>Review</h4>
+            <div class="star-filter" id="starFilter">
+              <span data-value="1">★</span>
+              <span data-value="2">★</span>
+              <span data-value="3">★</span>
+              <span data-value="4">★</span>
+              <span data-value="5">★</span>
+            </div>
+          </div>
+          
+      
+        <!-- Promotion -->
+        <div class="filter-group">
+          <h4>Promotion</h4>
+          <label><input type="checkbox" /> On Discount</label><br>
+          <label><input type="checkbox" /> Buy 1 Get 1</label>
+        </div>
+      </aside>
+      
+
+      <!-- PRODUCT GRID -->
+      <!-- PRODUCT GRID -->
+<div class="product-grid">
+  <div class="product-card">
+    <img src="C:\Users\User\Desktop\premium_photo-1679513691474-73102089c117.avif" alt="Product" />
+    <h4>Phone Holder Sakit</h4>
+    <h6>JO BBADU</h6>
+    <p>$29.90</p>
+    <div class="product-actions">
+      <button class="buy-now">Buy Now</button>
+      <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <img src="bag.jpg" alt="Product" />
+    <h4>HeadSound</h4>
+    <h6>JO BBADU</h6>
+    <p>$12.00</p>
+    <div class="product-actions">
+      <button class="buy-now">Buy Now</button>
+      <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <img src="bag.jpg" alt="Product" />
+    <h4>HeadSound</h4>
+    <h6>JO BBADU</h6>
+    <p>$12.00</p>
+    <div class="product-actions">
+      <button class="buy-now">Buy Now</button>
+      <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>    </div>
+  </div>
+
+  <div class="product-card">
+    <img src="bag.jpg" alt="Product" />
+    <h4>HeadSound</h4>
+    <h6>JO BBADU</h6>
+    <p>$12.00</p>
+    <div class="product-actions">
+      <button class="buy-now">Buy Now</button>
+      <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>    </div>
+  </div>
+
+  <div class="product-card">
+    <img src="bag.jpg" alt="Product" />
+    <h4>HeadSound</h4>
+    <h6>JO BBADU</h6>
+    <p>$12.00</p>
+    <div class="product-actions">
+      <button class="buy-now">Buy Now</button>
+      <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>    </div>
+  </div>
+
+  <div class="product-card">
+    <img src="bag.jpg" alt="Product" />
+    <h4>Adudu Cleaner</h4>
+    <h6>JO BEDU</h6>
+    <p>$29.90</p>
+    <div class="product-actions">
+      <button class="buy-now">Buy Now</button>
+      <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>    </div>
+  </div>
+</div>
+
+
+
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const stars = document.querySelectorAll('#starFilter span');
+  
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        const selectedValue = parseInt(star.getAttribute('data-value'));
+  
+        stars.forEach(s => {
+          const value = parseInt(s.getAttribute('data-value'));
+          if (value <= selectedValue) {
+            s.classList.add('filled');
+          } else {
+            s.classList.remove('filled');
+          }
+        });
+  
+        // Optional: store rating value
+        console.log(`User selected ${selectedValue} star(s)`);
+
+      });
+    });
+  </script>
+  
+
+</body>
+</html>
+

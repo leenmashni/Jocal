@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jocal - Search Page</title>
+  <link rel="stylesheet" href="/new.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+
+<body>
+<header class="main-navbar">
+  <div class="nav-container">
+    <div class="logo">JOCAL</div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">Deals</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="nav-icons">
+      <i class="fa-regular fa-user"></i>
+      <i class="fa-regular fa-heart"></i>
+      <i class="fa-solid fa-cart-shopping"></i>
+    </div>
+  </div>
+</header>
+
+<section class="search-hero">
+  <div class="search-hero-content">
+    <h1>Give All You Need</h1>
+    <div class="search-box">
+      <input type="text" placeholder="Search on Jocal..." />
+      <button>Search</button>
+    </div>
+  </div>
+</section>
+
+<div class="product-wrapper">
+  <section class="search-results">
+    <aside class="sidebar">
+      <h3>Filter</h3>
+      <div class="filter-group">
+        <h4>Category</h4>
+        <ul>
+          <li><input type="checkbox" /> All Products</li>
+          <li><input type="checkbox" /> For Home</li>
+          <li><input type="checkbox" /> For Music</li>
+          <li><input type="checkbox" /> For Storage</li>
+        </ul>
+      </div>
+      <div class="filter-group">
+        <h4>Price</h4>
+        <input type="range" min="0" max="500" step="10" value="250" id="priceRange" />
+        <p>Up to: <span id="priceValue">$250</span></p>
+      </div>
+      <div class="filter-group">
+        <h4>Review</h4>
+        <div class="star-filter" id="starFilter">
+          <span data-value="1">★</span>
+          <span data-value="2">★</span>
+          <span data-value="3">★</span>
+          <span data-value="4">★</span>
+          <span data-value="5">★</span>
+        </div>
+      </div>
+      <div class="filter-group">
+        <h4>Promotion</h4>
+        <label><input type="checkbox" /> On Discount</label><br>
+        <label><input type="checkbox" /> Buy 1 Get 1</label>
+      </div>
+    </aside>
+
+    <div class="product-grid">
+  <div class="product-grid">
+  <% products.forEach(product => { %>
+    <a href="/item/<%= product._id %>" class="product-card-link">
+      <div class="product-card">
+        <img src="<%= product.image %>" alt="<%= product.title %>" />
+        <h4><%= product.title %></h4>
+        <h6><%= product.brand %></h6>
+        <p><strong><%= product.price %> JOD</strong></p>
+
+        <div class="product-actions">
+          <span class="buy-now">View</span>
+          <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+        </div>
+      </div>
+    </a>
+  <% }) %>
+</div>
+
+</div>
+
+
+<script>
+  const stars = document.querySelectorAll('#starFilter span');
+  stars.forEach(star => {
+    star.addEventListener('click', () => {
+      const selectedValue = parseInt(star.getAttribute('data-value'));
+      stars.forEach(s => {
+        const value = parseInt(s.getAttribute('data-value'));
+        if (value <= selectedValue) {
+          s.classList.add('filled');
+        } else {
+          s.classList.remove('filled');
+        }
+      });
+      console.log(`User selected ${selectedValue} star(s)`);
+    });
+  });
+</script>
+
+</body>
+</html>

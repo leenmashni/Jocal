@@ -1,0 +1,79 @@
+/* src/styles/Wishlist.css */
+.wishlist-container {
+  padding: 60px 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.wishlist-container h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.wishlist-grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.wishlist-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: 0.3s ease;
+}
+
+.wishlist-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.wishlist-card h4 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.wishlist-card h6 {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.wishlist-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buy-now {
+  background: #373e40;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.wishlist-actions button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #e74c3c;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.wishlist-actions button:hover {
+  color: #c0392b;
+  transform: scale(1.1);
+}
+
+.not-logged {
+  text-align: center;
+  font-size: 18px;
+  padding: 80px;
+}

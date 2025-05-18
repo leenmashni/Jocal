@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= product.title %> - Jocal</title>
+  <link rel="stylesheet" href="/item.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <header class="main-navbar">
+    <div class="nav-container">
+      <div class="logo">JOCAL</div>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="#">Shop</a>
+        <a href="#">Deals</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="nav-icons">
+        <i class="fa-regular fa-user"></i>
+        <i class="fa-regular fa-heart"></i>
+        <i class="fa-solid fa-cart-shopping"></i>
+      </div>
+    </div>
+  </header>
+
+  <div class="product-page">
+    <div class="product-container">
+
+      <div class="product-images">
+        <img src="<%= product.image %>" class="main-image" alt="<%= product.title %>" />
+
+        <div class="review-section">
+          <h3>Reviews</h3>
+          <ul class="review-list" id="reviewList">
+            <li><strong>Helen M.</strong> – ★★★★★<br>Excellent item!</li>
+            <li><strong>Ann D.</strong> – ★★★★☆<br>Looks great and came quickly.</li>
+          </ul>
+
+          <div class="review-form">
+            <textarea id="reviewInput" placeholder="Write your review..."></textarea>
+            <button onclick="addReview()">Submit</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-details">
+        <h2><%= product.title %></h2>
+        <div class="brand">by <%= product.brand %></div>
+        <div class="price"><%= product.price %> JOD</div>
+        <div style="margin: 20px 0;">
+          <%- product.description %>
+        </div>
+
+        <% if (product.category) { %>
+          <p><strong>Category:</strong> <%= product.category %></p>
+        <% } %>
+        <% if (product.subcategory) { %>
+          <p><strong>Subcategory:</strong> <%= product.subcategory %></p>
+        <% } %>
+
+        <a href="<%= product.url %>" target="_blank" class="visit-site-btn">
+  <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Original Website
+</a>
+
+
+
+
+        <button class="add-to-cart">
+          <i class="fa-solid fa-cart-plus"></i> Add to Cart
+        </button>
+        <p class="note">Free delivery on orders over 30 JOD</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="recently-viewed">
+    <h3>Recently Viewed</h3>
+    <div class="recent-grid" id="recentGrid"></div>
+  </section>
+
+  <script>
+    function addReview() {
+      const input = document.getElementById("reviewInput");
+      const text = input.value.trim();
+      if (text) {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>You</strong> – ★★★★☆<br>${text}`;
+        document.getElementById("reviewList").prepend(li);
+        input.value = "";
+      }
+    }
+
+    const recentGrid = document.getElementById("recentGrid");
+    const card = `
+      <div class="recent-card">
+        <img src="<%= product.image %>" alt="<%= product.title %>" />
+        <h4><%= product.title %></h4>
+        <p><%= product.price %> JOD</p>
+      </div>`;
+    recentGrid.innerHTML = card.repeat(3);
+  </script>
+</body>
+</html>
